@@ -1,0 +1,24 @@
+.Note a {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #333;
+  margin-top: 20px;
+}
+
+.Note a div {
+  margin: 10px;
+}
+
+.Note-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.Note-bottom p {
+  font-size: 12px;
+}
+
+.Note-bottom button {
+  padding: 5px;
+}

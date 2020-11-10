@@ -1,0 +1,16 @@
+.Notes {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Notes ul {
+  width: 80%;
+}
+
+.add-note {
+  align-self: flex-start;
+  margin-top: 20px;
+  padding: 5px 25px;
+}

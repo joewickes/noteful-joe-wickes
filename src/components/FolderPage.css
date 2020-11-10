@@ -1,0 +1,8 @@
+.FolderPage {
+  width: 100%;
+  display: flex;
+}
+
+.active {
+  color: red;
+}

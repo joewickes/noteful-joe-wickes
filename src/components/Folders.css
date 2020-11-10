@@ -1,0 +1,11 @@
+.folders-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.folders-list button {
+  margin-top: 20px;
+  width: 50%;
+  padding: 5px 20px;
+}
