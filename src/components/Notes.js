@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Context from './context/Context';
 import Note from './Note';
@@ -18,7 +19,9 @@ class Notes extends React.Component {
             <div className="Notes">
               <ul>
                 {notes.map(note => <Note key={note.id} id={note.id} name={note.name} modified={note.modified} hist={hist} />)}
-                <button className="add-note" onClick={(e) => value.addNote(e)}>+</button>
+                <Link to="/form/add-note">
+                  <button className="add-note">+</button>
+                </Link>
               </ul>
             </div>
           );

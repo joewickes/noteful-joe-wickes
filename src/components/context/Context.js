@@ -20,10 +20,6 @@ export class ContextProvider extends React.Component {
       .then(response => response.json());
   }
 
-  
-
-
-
   componentDidMount() {
     Promise
       .all([this.getFolders(), this.getNotes()])
@@ -54,16 +50,58 @@ export class ContextProvider extends React.Component {
     ;
   }
 
-  addFolder = (e) => {
-    e.preventDefault();
-    console.log('Adding Folder');
-    const n = new Promise((resolve, reject) => resolve());
-    n.then(() => true);
+  postFolder = (folderInfo) => {
+    return fetch('http://localhost:9090/folders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: folderInfo,
+    })
+      .then(response => {
+        if (response.ok) {
+          this.setState({
+            store: {
+              folders: [...this.state.store.folders, JSON.parse(folderInfo)],
+              notes: [...this.state.store.notes],
+            }
+          });
+          return response.json();
+        } else {
+          throw Error(response.statusText);
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+    ;
   }
 
-  addNote = (e) => {
-    e.preventDefault();
-    console.log('Adding Note');
+  postNote = (noteInfo) => {
+    return fetch('http://localhost:9090/notes', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: noteInfo,
+    })
+      .then(response => {
+        if (response.ok) {
+          this.setState({
+            store: {
+              folders: [...this.state.store.folders],
+              notes: [...this.state.store.notes, JSON.parse(noteInfo)],
+            }
+          });
+          return response.json();
+        } else {
+          throw Error(response.statusText);
+        }
+      })
+      .catch(error => {
+        console.log(error.message);
+      })
+    ;
   }
 
   clickDelete = (e, id, history) => {
@@ -77,6 +115,23 @@ export class ContextProvider extends React.Component {
     })));
   }
 
+  handleClickCancel = (e, history) => {
+    e.preventDefault();
+    history.push('/');
+  }
+
+  handleFolderSubmit = (e, newFolder, history) => {
+    e.preventDefault();
+    this.postFolder(newFolder)
+      .then(() => history.push('/'));
+  }
+
+  handleNoteSubmit = (e, newNote, history) => {
+    e.preventDefault();
+    this.postNote(newNote)
+      .then(() => history.push('/'));
+  }
+
   render() {
 
     return (
@@ -85,6 +140,9 @@ export class ContextProvider extends React.Component {
         clickDelete: this.clickDelete,
         addNote: this.addNote,
         addFolder: this.addFolder,
+        handleFolderSubmit: this.handleFolderSubmit,
+        handleNoteSubmit: this.handleNoteSubmit,
+        handleClickCancel: this.handleClickCancel,
       }}>
         {this.props.children}
       </Context.Provider>

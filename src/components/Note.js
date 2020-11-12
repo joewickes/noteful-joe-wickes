@@ -8,6 +8,14 @@ class Note extends React.Component {
     
     const {name, modified, id, hist} = this.props;
 
+    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+
+    const date = new Date(modified);
+    const month = date.getMonth();
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+
     return (
       <Context.Consumer>
         {(value) => {
@@ -19,7 +27,7 @@ class Note extends React.Component {
                   <h3>{name}</h3>
                 </div>
                 <div className='Note-bottom'>
-                  <p>Last modified on {modified}</p>
+                  <p>Last modified on {`${monthNames[month]} ${day}, ${year}`}</p>
                   <button className="delete" onClick={(e) => value.clickDelete(e, id, hist)}>Delete</button>
                 </div>
               </NavLink>

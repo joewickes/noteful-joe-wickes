@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import Context from './context/Context';
 import Folder from './Folder';
 import './Folders.css';
@@ -15,7 +16,9 @@ class Folders extends React.Component {
           return (
             <ul className="folders-list">
               {folders.map(folder => <Folder key={folder.id} id={folder.id} name={folder.name} />)}
-              <button className="add-folder" onClick={(e) => value.addFolder(e)}>+</button>
+              <Link to="/form/add-folder" >
+                <button className="add-folder">+</button>
+              </Link>
             </ul>);
         }}
           

@@ -8,12 +8,16 @@ import './HomePage.css';
 class HomePage extends React.Component {
   render() {
 
+    console.log(this.props.history);
+
     return (
       <Context.Consumer>
         {(value) => {
         
           const folders = value.state.store.folders;
+          console.log('Folders', folders);
           const notes = value.state.store.notes;
+          console.log('Notes', notes);
 
           return (
             <div className="HomePage">
