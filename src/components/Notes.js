@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Context from './context/Context';
 import Note from './Note';
 import './Notes.css';
 
@@ -10,12 +11,20 @@ class Notes extends React.Component {
     const {notes} = this.props;
 
     return (
-      <div className="Notes">
-        <ul>
-          {notes.map(note => <Note key={note.id} id={note.id} name={note.name} modified={note.modified} />)}
-          <button className="add-note">+</button>
-        </ul>
-      </div>
+      <Context.Consumer>
+        {(value) => {
+
+          return (
+            <div className="Notes">
+              <ul>
+                {notes.map(note => <Note key={note.id} id={note.id} name={note.name} modified={note.modified} />)}
+                <button className="add-note" onClick={(e) => value.addNote(e)}>+</button>
+              </ul>
+            </div>
+          );
+        }}
+      </Context.Consumer>
+      
     );
   }
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Context from './context/Context';
 import Folder from './Folder';
 import './Folders.css';
 
@@ -8,10 +9,18 @@ class Folders extends React.Component {
     const {folders} = this.props;
 
     return (
-      <ul className="folders-list">
-        {folders.map(folder => <Folder key={folder.id} id={folder.id} name={folder.name} />)}
-        <button className="add-folder">+</button>
-      </ul>
+      <Context.Consumer>
+        {(value) => {
+
+          return (
+            <ul className="folders-list">
+              {folders.map(folder => <Folder key={folder.id} id={folder.id} name={folder.name} />)}
+              <button className="add-folder" onClick={(e) => value.addFolder(e)}>+</button>
+            </ul>);
+        }}
+          
+
+      </Context.Consumer>
     );
   }
 }
