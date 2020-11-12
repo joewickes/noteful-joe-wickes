@@ -21,7 +21,7 @@ class HomePage extends React.Component {
                 <Folders folders={folders}/>
               </section>
               <main className="main">
-                <Notes notes={notes} />
+                <Notes notes={notes} hist={this.props.history} />
               </main>
             </div>
           );

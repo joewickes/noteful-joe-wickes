@@ -66,17 +66,15 @@ export class ContextProvider extends React.Component {
     console.log('Adding Note');
   }
 
-  clickDelete = (e, id) => {
-    e.preventDefault();
-    this.deleteNote(id);
-    const currentNotes = this.state.store.notes;
+  clickDelete = (e, id, history) => {
 
-    this.setState({
+    e.preventDefault();
+    this.deleteNote(id).then(() => history.push('/', this.setState({
       store: {
         folders: [...this.state.store.folders],
-        notes: currentNotes.filter(note => note.id !== id),
+        notes: this.state.store.notes.filter(note => note.id !== id),
       },
-    });
+    })));
   }
 
   render() {

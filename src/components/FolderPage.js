@@ -8,9 +8,8 @@ import './FolderPage.css';
 class FolderPage extends React.Component {
 
   render() {
-
+    const hist = this.props.history;
     const matched = this.props.match.params.id;
-    console.log('Folder: ', matched);
 
     return (
       <Context.Consumer>
@@ -25,7 +24,7 @@ class FolderPage extends React.Component {
                 <Folders folders={folders}/>
               </div>
               <div className="main">
-                <Notes notes={notes} />
+                <Notes notes={notes} hist={hist} />
               </div>
             </div>
           );

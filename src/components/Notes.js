@@ -8,7 +8,7 @@ class Notes extends React.Component {
   
   render() {
  
-    const {notes} = this.props;
+    const {notes, hist} = this.props;
 
     return (
       <Context.Consumer>
@@ -17,7 +17,7 @@ class Notes extends React.Component {
           return (
             <div className="Notes">
               <ul>
-                {notes.map(note => <Note key={note.id} id={note.id} name={note.name} modified={note.modified} />)}
+                {notes.map(note => <Note key={note.id} id={note.id} name={note.name} modified={note.modified} hist={hist} />)}
                 <button className="add-note" onClick={(e) => value.addNote(e)}>+</button>
               </ul>
             </div>
