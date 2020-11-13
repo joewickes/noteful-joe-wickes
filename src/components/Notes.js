@@ -1,12 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import PropTypes from 'prop-types';
 import Context from './context/Context';
 import Note from './Note';
 import './Notes.css';
 
 class Notes extends React.Component {
-  
+
+  static defaultProps = {
+    notes: [],
+    hist: {},
+  }
+
   render() {
  
     const {notes, hist} = this.props;
@@ -31,5 +36,10 @@ class Notes extends React.Component {
     );
   }
 }
+
+Notes.propTypes = {
+  notes: PropTypes.arrayOf(PropTypes.object).isRequired,
+  hist: PropTypes.object.isRequired,
+};
 
 export default Notes;

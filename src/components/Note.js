@@ -1,9 +1,18 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Context from './context/Context';
+import PropTypes from 'prop-types';
 import './Note.css';
 
 class Note extends React.Component {
+
+  static defaultProps = {
+    name: '',
+    modified: '',
+    id: '',
+    hist: {},
+  }
+
   render() {
     
     const {name, modified, id, hist} = this.props;
@@ -39,5 +48,12 @@ class Note extends React.Component {
     );
   } 
 }
+
+Note.propTypes = {
+  name: PropTypes.string.isRequired,
+  modified: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired,
+  hist: PropTypes.object.isRequired,
+};
 
 export default Note;

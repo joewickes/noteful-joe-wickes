@@ -2,9 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Context from './context/Context';
 import Folder from './Folder';
+import PropTypes from 'prop-types';
 import './Folders.css';
 
 class Folders extends React.Component {
+
+  static defaultProps = {
+    folders: [],
+  }
+
   render() {
 
     const {folders} = this.props;
@@ -27,5 +33,9 @@ class Folders extends React.Component {
     );
   }
 }
+
+Folders.propTypes = {
+  folders: PropTypes.arrayOf(PropTypes.object).isRequired,
+};
 
 export default Folders;

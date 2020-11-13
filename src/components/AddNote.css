@@ -1,0 +1,41 @@
+.AddNote {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.add-note-name-and-folder {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-note-name-and-folder label {
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.add-note-name-and-folder input {
+  margin-right: 10px;
+  margin-top: 20px;
+}
+
+.add-note-name-and-folder select {
+  margin-top: 20px;
+}
+
+.add-note-content-container {
+  display: flex;
+  align-items: flex-start;
+  margin: 20px;
+}
+
+.add-note-content-container label {
+  margin-right: 10px;
+}
+
+.add-note-buttons button {
+  padding: 5px;
+  margin: 10px;
+}
