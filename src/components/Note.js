@@ -33,7 +33,7 @@ class Note extends React.Component {
             <li className="Note">
               <NavLink to={`/note/${id}`}>
                 <div className="Note-top">
-                  <h3>{name}</h3>
+                  <h2>{name}</h2>
                 </div>
                 <div className='Note-bottom'>
                   <p>Last modified on {`${monthNames[month]} ${day}, ${year}`}</p>

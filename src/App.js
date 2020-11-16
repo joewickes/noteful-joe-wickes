@@ -49,7 +49,7 @@ class App extends React.Component {
             <Route exact path='/form/add-note' component={() => <AddNote />} />
             <Route exact path='/folder/:id' component={() => <FolderPage />} />
             <Route exact path='/note/:id' component={() => <NotePage />} />
-            <Route component={NotFoundPage} />
+            <Route component={() => NotFoundPage} />
           </Switch>
         </div>
       </ContextProvider>

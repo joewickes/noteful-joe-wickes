@@ -22,9 +22,11 @@ class Folders extends React.Component {
           return (
             <ul className="folders-list">
               {folders.map(folder => <Folder key={folder.id} id={folder.id} name={folder.name} />)}
-              <Link to="/form/add-folder" >
-                <button className="add-folder">+</button>
-              </Link>
+              <li>
+                <Link to="/form/add-folder" >
+                  <button className="add-folder">+</button>
+                </Link>
+              </li>
             </ul>);
         }}
           

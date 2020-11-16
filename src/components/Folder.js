@@ -16,7 +16,7 @@ class Folder extends React.Component {
     return (
       <li className="Folder">
         <NavLink to={`/folder/${id}`}>
-          <h3>{name}</h3>
+          <h2>{name}</h2>
         </NavLink>
       </li>
     );

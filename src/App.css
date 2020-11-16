@@ -17,6 +17,10 @@ li {
   list-style-type: none;
 }
 
+h2 {
+  font-size: 20px;
+}
+
 header {
   border-bottom: 1px solid #333;
   width: 100vw;
