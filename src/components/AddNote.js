@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import Context from './context/Context';
 import PropTypes from 'prop-types';
 import {ErrorCatch} from './../App';
@@ -10,7 +9,7 @@ class AddNote extends React.Component {
   state = {
     name: '',
     content: '',
-    selected: '',
+    selected: 1,
   }
 
   static defaultProps = {
@@ -21,7 +20,7 @@ class AddNote extends React.Component {
     this.setState({
       name: name,
       content: this.state.content,
-      selected: this.selected,
+      selected: this.state.selected,
     });
   }
 
@@ -29,7 +28,7 @@ class AddNote extends React.Component {
     this.setState({
       name: this.state.name,
       content: content,
-      selected: this.selected,
+      selected: this.state.selected,
     });
   }
 
@@ -41,18 +40,11 @@ class AddNote extends React.Component {
     });
   }
 
-  getTime = () => {
-    const date = new Date();
-    return date.toISOString();
-  }
-
   validateNoteName = (name) => {
-    console.log(name);
     const nameTrimmed = name.trim();
     if (nameTrimmed !== '') {
       return true;
     } else {
-      console.log('was empty');
       return false;
     }
   }
@@ -67,19 +59,28 @@ class AddNote extends React.Component {
         <Context.Consumer>
           {(value) => {
 
+          let idVal = 0;
+
+          for (let i = 0; i < value.state.store.notes.length; i++) {
+            const noteId = value.state.store.notes[i].id;
+
+            if (noteId > idVal) {
+              idVal = noteId;
+            }
+          }
+
             const newNote = {
-              id: uuidv4(),
-              modified: null,
-              folderId: this.state.selected,
+              id: idVal + 1,
+              folder_id: this.state.selected,
               name: this.state.name,
               content: this.state.content,
             };
 
             return (
               <form className="AddNote" onSubmit={(e) => {
-                newNote.modified = this.getTime();
                 if (this.validateNoteName(newNote.name)) {
-                  return value.handleNoteSubmit(e, JSON.stringify(newNote), this.props.history);
+                  newNote.modified = new Date();
+                  return value.handleNoteSubmit(e, newNote, this.props.history);
                 } else {
                   e.preventDefault();
                   alert('Don\'t forget to add a note name!');
@@ -90,7 +91,9 @@ class AddNote extends React.Component {
                 <div className="add-note-name-and-folder">
                   <label htmlFor="#AddNoteName">Note name: </label>
                   <input type="text" id="AddNoteName" onChange={(e) => this.updateName(e.target.value)} required />
-                  <select name="folders" id="foldersSelect" onChange={(e) => this.updateSelected(e.target.options[e.target.selectedIndex].id)} required>
+                  <select name="folders" id="foldersSelect" onChange={(e) => {
+                    return this.updateSelected(parseInt(e.target.options[e.target.selectedIndex].id))
+                  }} required>
                     <option value="">Select a Folder</option>
                     {value.state.store.folders.map(folder => (<option key={folder.id} id={folder.id} value={folder.name}>{folder.name}</option>))}
                   </select>

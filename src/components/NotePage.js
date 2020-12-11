@@ -14,7 +14,7 @@ class NotePage extends React.Component {
 
   render() {
 
-    const matched = this.props.match.params.id;
+    const matched = parseInt(this.props.match.params.id);
     const history = this.props.history;
 
     const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];

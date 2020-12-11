@@ -52,7 +52,7 @@ class Note extends React.Component {
 Note.propTypes = {
   name: PropTypes.string.isRequired,
   modified: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   hist: PropTypes.object.isRequired,
 };
 

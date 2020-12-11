@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { v4 as uuidv4 } from 'uuid';
 import Context from './context/Context';
+import { v4 as uuid } from 'uuid';
 import PropTypes from 'prop-types';
 import {ErrorCatch} from './../App';
 import './AddFolder.css';
@@ -22,12 +22,10 @@ class AddFolder extends React.Component {
   }
 
   validateFolderName = (name) => {
-    console.log(name);
     const nameTrimmed = name.trim();
     if (nameTrimmed !== '') {
       return true;
     } else {
-      console.log('was empty');
       return false;
     }
   }
@@ -40,8 +38,18 @@ class AddFolder extends React.Component {
         <Context.Consumer>
           {(value) => {
 
+            let idVal = 0;
+
+            for (let i = 0; i < value.state.store.folders.length; i++) {
+              const folderId = value.state.store.folders[i].id;
+
+              if (folderId > idVal) {
+                idVal = folderId;
+              }
+            }
+
             const newFolder = {
-              id: uuidv4(),
+              id: idVal + 1,
               name: this.state.name,
             };
 

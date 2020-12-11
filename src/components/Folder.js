@@ -24,7 +24,7 @@ class Folder extends React.Component {
 }
 
 Folder.propTypes = {
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
 };
 

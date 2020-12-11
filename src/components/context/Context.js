@@ -11,12 +11,14 @@ export class ContextProvider extends React.Component {
   }
 
   getFolders = () => {
-    return fetch('http://localhost:9090/folders')
-      .then(response => response.json());
+    return fetch('http://localhost:8000/api/folders')
+      .then(response => {
+        return response.json()
+      });
   }
 
   getNotes = () => {
-    return fetch('http://localhost:9090/notes')
+    return fetch('http://localhost:8000/api/notes')
       .then(response => response.json());
   }
 
@@ -33,14 +35,17 @@ export class ContextProvider extends React.Component {
       });
   }
 
+
   deleteNote = (id) => {
-    return fetch(`http://localhost:9090/notes/${id}`, {
+    console.log('deleting');
+    console.log(id);
+
+    console.log(`http://localhost:8000/api/notes/${id}`);
+    return fetch(`http://localhost:8000/api/notes/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
-        if (response.ok) {
-          return response.json();
-        } else {
+        if (!response.ok) {
           throw Error(response.statusText);
         }
       })
@@ -51,7 +56,7 @@ export class ContextProvider extends React.Component {
   }
 
   postFolder = (folderInfo) => {
-    return fetch('http://localhost:9090/folders', {
+    return fetch('http://localhost:8000/api/folders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -78,7 +83,7 @@ export class ContextProvider extends React.Component {
   }
 
   postNote = (noteInfo) => {
-    return fetch('http://localhost:9090/notes', {
+    return fetch('http://localhost:8000/api/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -105,7 +110,6 @@ export class ContextProvider extends React.Component {
   }
 
   clickDelete = (e, id, history) => {
-
     e.preventDefault();
     this.deleteNote(id).then(() => history.push('/', this.setState({
       store: {
@@ -128,7 +132,8 @@ export class ContextProvider extends React.Component {
 
   handleNoteSubmit = (e, newNote, history) => {
     e.preventDefault();
-    this.postNote(newNote)
+
+    this.postNote(JSON.stringify(newNote))
       .then(() => history.push('/'));
   }
 

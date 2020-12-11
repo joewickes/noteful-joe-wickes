@@ -16,7 +16,7 @@ class FolderPage extends React.Component {
 
   render() {
     const hist = this.props.history;
-    const matched = this.props.match.params.id;
+    const matched = parseInt(this.props.match.params.id);
 
     return (
       <ErrorCatch>
@@ -24,7 +24,7 @@ class FolderPage extends React.Component {
           {(value) => {
 
             const folders = value.state.store.folders;
-            const notes = value.state.store.notes.filter(notes => notes.folderId === matched);
+            const notes = value.state.store.notes.filter(notes => notes.folder_id === matched);
 
             return (
               <div className="FolderPage">
