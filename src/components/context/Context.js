@@ -37,10 +37,6 @@ export class ContextProvider extends React.Component {
 
 
   deleteNote = (id) => {
-    console.log('deleting');
-    console.log(id);
-
-    console.log(`http://localhost:8000/api/notes/${id}`);
     return fetch(`http://localhost:8000/api/notes/${id}`, {
       method: 'DELETE',
     })
