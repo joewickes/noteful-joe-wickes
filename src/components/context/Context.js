@@ -11,14 +11,14 @@ export class ContextProvider extends React.Component {
   }
 
   getFolders = () => {
-    return fetch('http://localhost:8000/api/folders')
+    return fetch('https://murmuring-citadel-66935.herokuapp.com/api/folders')
       .then(response => {
         return response.json()
       });
   }
 
   getNotes = () => {
-    return fetch('http://localhost:8000/api/notes')
+    return fetch('https://murmuring-citadel-66935.herokuapp.com/api/notes')
       .then(response => response.json());
   }
 
@@ -37,7 +37,7 @@ export class ContextProvider extends React.Component {
 
 
   deleteNote = (id) => {
-    return fetch(`http://localhost:8000/api/notes/${id}`, {
+    return fetch(`https://murmuring-citadel-66935.herokuapp.com/api/notes/${id}`, {
       method: 'DELETE',
     })
       .then(response => {
@@ -52,7 +52,7 @@ export class ContextProvider extends React.Component {
   }
 
   postFolder = (folderInfo) => {
-    return fetch('http://localhost:8000/api/folders', {
+    return fetch('https://murmuring-citadel-66935.herokuapp.com/api/folders', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
@@ -79,7 +79,7 @@ export class ContextProvider extends React.Component {
   }
 
   postNote = (noteInfo) => {
-    return fetch('http://localhost:8000/api/notes', {
+    return fetch('https://murmuring-citadel-66935.herokuapp.com/api/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
